@@ -65,6 +65,26 @@ describe('enhancer.js', () => {
             })
         })
 
+        describe('enhancer.get()', () => {
+            it("should prepend an item's name with the enhancement level if greater than 0 or leave it alone if it is 0", () => {
+                expect(get({ name: 'Canopus Lux', durability: 55, enhancement: 15 })).toEqual({
+                    name: '[+15] Canopus Lux',
+                    durability: 55,
+                    enhancement: 15
+                })
+                expect(get({ name: 'Anabasis Lux', durability: 69, enhancement: 0 })).toEqual({
+                    name: 'Anabasis Lux',
+                    durability: 69,
+                    enhancement: 0
+                })
+                expect(get({ name: 'Mimesis Lux', durability: 5, enhancement: 4 })).toEqual({
+                    name: '[+4] Mimesis Lux',
+                    durability: 5,
+                    enhancement: 4
+                })
+            })
+        })
+
 
     });
 });
