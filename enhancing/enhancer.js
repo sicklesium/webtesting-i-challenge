@@ -9,13 +9,24 @@ function succeed(item) {
   if (item.enhancement === 20) {
     return { ...item };
   } else {
-    const enhance1 = item.enhancement + 1;
-    return { ...item, enhancement: enhance1 };
+    return { ...item, enhancement: item.enhancement + 1 };
   }
 }
 
 function fail(item) {
-  return { ...item };
+  if (item.enhancement < 15 && item.durability <= 5) {
+    return { ...item, durability: 0 }
+  } else if (item.enhancement < 15 && item.durability > 5) {
+    return { ...item, durability: item.durability - 5 }
+  } else if (item.enhancement === 15 && item.durability <= 10) {
+    return { ...item, durability: 0 }
+  } else if (item.enhancement === 15) {
+    return { ...item, durability: item.durability - 10 }
+  } else if (item.enhancement > 15 && item.durability <= 10) {
+    return { ...item, durability: 0, enhancement: item.enhancement - 1 }
+  } else if (item.enhancement > 15) {
+    return { ...item, durability: item.durability - 10, enhancement: item.enhancement - 1 }
+  }
 }
 
 function repair(item) {

@@ -45,5 +45,26 @@ describe('enhancer.js', () => {
         });
 
 
+        describe('enhancer.fail()', () => {
+            it('should accept an item object and return a new item with durability and sometimes enhancement adjusted', () => {
+                expect(fail({ name: 'Canopus Lux', durability: 55, enhancement: 16 })).toEqual({
+                    name: 'Canopus Lux',
+                    durability: 45,
+                    enhancement: 15
+                });
+                expect(fail({ name: 'Anabasis Lux', durability: 3, enhancement: 10 })).toEqual({
+                    name: 'Anabasis Lux',
+                    durability: 0,
+                    enhancement: 10
+                });
+                expect(fail({ name: 'Mimesis Lux', durability: 69, enhancement: 19 })).toEqual({
+                    name: 'Mimesis Lux',
+                    durability: 59,
+                    enhancement: 18
+                })
+            })
+        })
+
+
     });
 });
